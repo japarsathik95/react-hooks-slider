@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 
 export default function Slider() {
@@ -30,6 +30,18 @@ export default function Slider() {
       text: "slide five"
     }
   ]);
+
+  const autoSlider = () => {
+    setSlidenum(++slidenum);
+  };
+
+  useEffect(() => {
+    if (slidenum >= slides.length) {
+      setInterval(autoSlider, 3000);
+    } else {
+      clearInterval(autoSlider);
+    }
+  });
 
   // const slideData = slides.filter(data => data.id === slidenum);
   // alert(JSON.stringify(slideData));
